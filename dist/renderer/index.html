@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <title>Language Learning Environment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">LLE</div>
+        <div class="logo-text">
+          <h1>Language Learning Environment</h1>
+          <p>Installer & Launcher</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Screen: Checking -->
+      <div id="screen-checking" class="screen active">
+        <div class="spinner"></div>
+        <h2>Checking system...</h2>
+        <p id="checking-status">Verifying .NET SDK and application files</p>
+      </div>
+
+      <!-- Screen: .NET Install -->
+      <div id="screen-dotnet" class="screen">
+        <div class="step-icon">&#9889;</div>
+        <h2>.NET SDK Required</h2>
+        <p>LLE requires .NET 10 SDK to run. It's not currently installed on your system.</p>
+        <div id="dotnet-progress" class="progress-container hidden">
+          <div class="progress-bar">
+            <div class="progress-fill" id="dotnet-progress-fill"></div>
+          </div>
+          <p class="progress-text" id="dotnet-progress-text">Preparing...</p>
+        </div>
+        <div class="button-group">
+          <button id="btn-install-dotnet" class="btn btn-primary">Install .NET 10 SDK</button>
+          <button id="btn-cancel" class="btn btn-secondary">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Screen: Version Select -->
+      <div id="screen-versions" class="screen">
+        <div class="step-icon">&#128230;</div>
+        <h2>Select Version</h2>
+        <p>Choose which version of LLE to install.</p>
+        <div id="version-list" class="version-list">
+          <div class="spinner small"></div>
+          <p>Loading versions...</p>
+        </div>
+        <div id="install-progress" class="progress-container hidden">
+          <div class="progress-bar">
+            <div class="progress-fill" id="install-progress-fill"></div>
+          </div>
+          <p class="progress-text" id="install-progress-text">Preparing...</p>
+        </div>
+      </div>
+
+      <!-- Screen: Running -->
+      <div id="screen-running" class="screen">
+        <div class="step-icon success">&#10003;</div>
+        <h2>LLE is Running</h2>
+        <p>The server is running and the app is ready to use.</p>
+        <div class="server-info">
+          <span class="server-url" id="server-url">http://localhost:8080</span>
+        </div>
+        <div class="button-group">
+          <button id="btn-open-browser" class="btn btn-primary">Open in Browser</button>
+          <div class="button-row">
+            <button id="btn-switch-version" class="btn btn-secondary">Switch Version</button>
+            <button id="btn-uninstall" class="btn btn-danger">Uninstall</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen: Uninstall -->
+      <div id="screen-uninstall" class="screen">
+        <div class="step-icon">&#128465;</div>
+        <h2>Uninstalling LLE</h2>
+        <p>Removing all application files and shortcuts...</p>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="uninstall-progress-fill"></div>
+          </div>
+          <p class="progress-text" id="uninstall-progress-text">Preparing...</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

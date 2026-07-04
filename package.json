@@ -1,0 +1,65 @@
+{
+  "name": "lle-installer",
+  "version": "1.0.0",
+  "description": "Installer and launcher for LLE - Language Learning Environment",
+  "main": "dist/main/main.js",
+  "author": "hudson1998x <jhudson98new@gmail.com>",
+  "homepage": "https://github.com/hudson1998x/language-learning-platform",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx tsc && mkdir -p dist/renderer && cp src/renderer/index.html src/renderer/renderer.js src/renderer/styles.css dist/renderer/",
+    "start": "npm run build && electron .",
+    "dev": "npm run build && electron .",
+    "package": "npm run build && electron-builder",
+    "package:win": "npm run build && electron-builder --win",
+    "package:mac": "npm run build && electron-builder --mac",
+    "package:linux": "npm run build && electron-builder --linux",
+    "publish": "npm run build && electron-builder"
+  },
+  "dependencies": {
+    "extract-zip": "^2.0.1",
+    "tree-kill": "^1.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.12.0",
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.0",
+    "typescript": "^5.7.0"
+  },
+  "build": {
+    "appId": "com.lle.installer",
+    "productName": "Language Learning Environment",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.education",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "build/icon.icns"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "linux": {
+      "target": [
+        "zip"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Language Learning Environment"
+    }
+  }
+}
