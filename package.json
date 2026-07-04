@@ -7,7 +7,7 @@
   "homepage": "https://github.com/hudson1998x/language-learning-platform",
   "license": "MIT",
   "scripts": {
-    "build": "npx tsc && mkdir -p dist/renderer && cp src/renderer/index.html src/renderer/renderer.js src/renderer/styles.css dist/renderer/",
+    "build": "npx tsc && node -e \"const fs=require('fs');fs.mkdirSync('dist/renderer',{recursive:true});['index.html','renderer.js','styles.css'].forEach(f=>fs.copyFileSync('src/renderer/'+f,'dist/renderer/'+f))\"",
     "start": "npm run build && electron .",
     "dev": "npm run build && electron .",
     "package": "npm run build && electron-builder",
