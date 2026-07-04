@@ -7,6 +7,10 @@ on:
 permissions:
   contents: write
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build-windows:
     runs-on: windows-latest
@@ -43,7 +47,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run publish -- --linux --arch ${{ matrix.arch }}
+      - run: npm run publish -- --linux --${{ matrix.arch }}
 
       - uses: actions/upload-artifact@v4
         with:
